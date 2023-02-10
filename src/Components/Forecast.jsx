@@ -1,51 +1,18 @@
-// import React, {useState, useEffect} from 'react'
-
-// const Forecast = ({city}) => {
-//     const [nextDay, setNextDay] = useState("")
-
-//  const apiKey = "4467c1bf50118629e35df22b3127c587"
-
-//  useEffect (()=>{
-//         const fetchData = async () => {
-//             try {
-//                 const result = await fetch(`https://pro.openweathermap.org/data/2.5/forecast/weather?${city}&appid=${apiKey}`)
-//                 const data = await result.json()
-//                 console.log(data)
-//                 // setTemperature(data.main.temp, "base")
-
-//             }
-//             catch (error) {
-//                 console.log(error)
-//             }
-
-//         }
-//         fetchData()
-//     }, [city])
-
-
-//   return (
-//     <div>
-//         <p>hola</p>
-//     </div>
-//   )
-// }
-
-// export default Forecast
-
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, CircularProgress } from "@mui/material";
 import DataCard from "./DataCard";
-const Forecast = () => {
-    const [search, setSearch] = useState('Asuncion')
-   const [state, setState] =  useState()
+const Forecast = ({ city }) => {
+    // const [search, setSearch] = useState('Asuncion')
+    const [state, setState] = useState()
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=eb0b28dc1984d2f0f78c1f7488f24e60&units=metric`)
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=eb0b28dc1984d2f0f78c1f7488f24e60&units=metric`)
                 const data = await response.json()
                 const { main, weather, wind } = data
                 const { description } = weather[0]
                 const { speed } = wind
+                console.log(data)
 
                 setState({ ...main, description, speed })
             }
@@ -55,9 +22,9 @@ const Forecast = () => {
 
         }
         fetchData()
-    }, [search])
+    }, [city])
 
-    console.log(search)
+
     if (!state) return <CircularProgress />
     return (
         <div>
