@@ -1,20 +1,20 @@
 import './App.css';
-import {ExtractJson} from './Components/ExtractJson.jsx'
 import { SearchForm } from './Components/SearchForm';
 import {useState} from 'react'
+import Forecast from './Components/Forecast';
+import Form from './Components/Form';
 
 function App() {
 
-  const [busqueda, setBusqueda] = useState("")
-
-  console.log(busqueda, "app")
-
+  const [city, setCity] = useState("");
 
   return (
     <div className="App">
-      <SearchForm busqueda={busqueda} setBusqueda={setBusqueda}/>
-      <ExtractJson busqueda={busqueda}/>
-      
+      {/* <SearchForm city={city} setCity={setCity}/>
+      <Forecast city={city}/> */}
+      {/* <Form city={city}/> */}
+
+      <Forecast city={city}/>
     </div>
   );
 }
